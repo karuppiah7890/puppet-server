@@ -23,13 +23,16 @@ func main() {
 
 		if err != nil {
 			log.Printf("error occurred while json marshalling pong response: %v", err)
-			w.WriteHeader(500)
+			log.Printf("RequestMethod:%v RequestUrl:%v ResponseCode:%v", r.Method, r.URL.Path, http.StatusInternalServerError)
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 
+		log.Printf("RequestMethod:%v RequestUrl:%v ResponseCode:%v", r.Method, r.URL.Path, http.StatusOK)
 		w.Write(jsonResponse)
 	})
 
+	log.Printf("server is starting ...")
 	err := http.ListenAndServe(":8080", mux)
 
 	if err != nil {
