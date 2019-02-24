@@ -32,8 +32,8 @@ func getJSONMessage(message string) ([]byte, error) {
 
 func main() {
 	opts := badger.DefaultOptions
-	opts.Dir = "/Users/karuppiah/badger"
-	opts.ValueDir = "/Users/karuppiah/badger"
+	opts.Dir = "/tmp/badger"
+	opts.ValueDir = "/tmp/badger"
 	db, err := badger.Open(opts)
 	if err != nil {
 		log.Fatal(err)
